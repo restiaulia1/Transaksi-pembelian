@@ -45,24 +45,15 @@ export async function ambilDaftarBarang() {
   return hasilKueri;
 }
 
-export async function tambahBarang(item, harga, jumlah) {
-  try {
-    // menyimpan data ke firebase
-    const refDokumen = await addDoc(collection(basisdata, "inventory"), {
-      item: item,
-      harga: harga,
-      jumlah: jumlah
-    })
-    
-        // menampilkan pesan berhasil
-    console.log('berhasil menyimpan data barang')
-  } catch (error) {
-    // menampilkan pesan gagal 
-    console.log('gagal menyimpan data barang' + error)
-  }
-}
-
-export async function hapusBarang(id) {
-  await deleteDoc(doc(basisdata, "inventory", id))
+// Menambah barang ke keranjang
+export async function tambahBarangkekeranjang(
+idbarang,
+nama,
+harga, 
+jumlah, 
+idpelanggan,
+namapelanggan
+) {
+  
 }
 
