@@ -49,7 +49,7 @@
 
 
       <script type="module">
-        import { ambilDaftarBarang, tambahBarangKeKeranjang } from './main.js';
+        import { ambilDaftarBarang, tambahBarangkekeranjang } from './main.js';
 
         $(document).ready(async function() {
           let elemenDaftarBarang = $("#daftar-barang > tbody");
@@ -81,7 +81,7 @@
           let idPelanggan = 'proses'
           let namaPelanggan = 'proses'
           
-          await tambahBarangKeKeranjang(idbarang, nama, harga, jumlah, idPelanggan, namapelanggan)
+          await tambahBarangkekeranjang(idbarang, nama, harga, jumlah, idPelanggan, namapelanggan)
           
           console.log("menambah barang ke keranjang")
           
@@ -91,8 +91,11 @@
           let nomorKeranjang = 1
           let totalKeranjang = 0
           
-          daftarBarangDiKeranjang.forEach((data) => {
-            elemenBarangDiKeranjang.append(
+          //mengosongkan daftar barang sebelumnya
+          elemenDaftarBarangkekeranjang.empty()
+          
+          daftarBarangDikeranjang.forEach((data) => {
+            elemenBarangDikeranjang.append(
               "<tr>" +
               "<td>" + nomorKeranjang + "</td>" +
               "<td>" + data.nama + "</td>" +
@@ -105,7 +108,7 @@
            nomorkeranjang++
            
            // selesai menampilkan barang di keranjang
-           
+          })   
         })
         })
       </script>

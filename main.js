@@ -27,11 +27,11 @@ const aplikasi = initializeApp(firebaseConfig)
 const basisdata = getFirestore(aplikasi)
 
 //fungsi ambil daftar barang 
-export async function ambilDaftarBarangkeranjang() {
+export async function ambilDaftarBarang() {
   const refDokumen = collection(basisdata, "inventory");
   const kueri = query(refDokumen, orderBy("item"));
   const cuplikanKueri = await getDocs(kueri);
-    
+  
   let hasilKueri = [];
   cuplikanKueri.forEach((dokumen) => {
     hasilKueri.push({
@@ -45,15 +45,15 @@ export async function ambilDaftarBarangkeranjang() {
   return hasilKueri;
 }
 
-// Menambah barang ke keranjang
+// menambah barang ke keranjang 
 export async function tambahBarangkekeranjang(
-idbarang,
-nama,
-harga, 
-jumlah, 
-idpelanggan,
-namapelanggan
-) {
+  idbarang,
+  nama,
+  harga,
+  jumlah,
+  idpelanggan,
+  namapelanggan
+  ) {
   try {
     // menyimpan data ke collection transaksi 
     const refDokumen = await addDoc(collection(basisdata, "transaksi"), {
@@ -65,27 +65,26 @@ namapelanggan
       namapelanggan: namapelanggan
     })
     
-    // menampilkan pesan berhasil
+    // menampilkan pesan berhasil 
     console.log("berhasil menyimpan keranjang")
   } catch (error) {
-    // menampilkan pesan gagal
+    // menampilkan pesan gagal 
     console.log(error)
-    
-    
   }
 }
 
-// menampilkan barang di keranjang
-export async function ambilDaftarBarangkeranjang() {
+//menampilkan barang di keranjang 
+export async function ambilDaftarBarangDiKeranjang() {
   const refDokumen = collection(basisdata, "transaksi");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
-    
+  
   let hasilKueri = [];
   cuplikanKueri.forEach((dokumen) => {
     hasilKueri.push({
       id: dokumen.id,
       item: dokumen.data().item,
+      nama: dokumen.data().nama,
       jumlah: dokumen.data().jumlah,
       harga: dokumen.data().harga
     })
@@ -93,4 +92,3 @@ export async function ambilDaftarBarangkeranjang() {
 
   return hasilKueri;
 }
-
