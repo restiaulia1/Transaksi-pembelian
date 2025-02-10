@@ -64,7 +64,7 @@
               "<td>" + nomor + "</td>" +
               "<td>" + data.item + "</td>" +
               "<td>" + data.harga + "</td>" +
-              "<td>" + "<a href='#' class='me-2 link-keranjang' data='" + data.id + "'><i class='bi bi-cart-plus'd data-nama='" + data item +"' data-harga='" + data.harga +'" + ></i></a>" + "</td>" +
+              "<td>" + "<a href='#' class='me-2 link-keranjang' data='" + data.id + "' data-nama='" + data.item + "' data-harga='" + data.harga + "'><i class='bi bi-cart-plus'></i></a>" + "</td>" +
               "</tr>"
             )
             
@@ -84,6 +84,28 @@
           await tambahBarangKeKeranjang(idbarang, nama, harga, jumlah, idPelanggan, namapelanggan)
           
           console.log("menambah barang ke keranjang")
+          
+          // menampilkan daftar barang yang ada di keranjang
+          let elemenDaftarBarangDiKeranjang = $("#daftar-keranjang > tbody")
+          let daftarBarangDiKeranjang = await ambilDaftarBarangDiKeranjang()
+          let nomorKeranjang = 1
+          let totalKeranjang = 0
+          
+          daftarBarangDiKeranjang.forEach((data) => {
+            elemenBarangDiKeranjang.append(
+              "<tr>" +
+              "<td>" + nomorKeranjang + "</td>" +
+              "<td>" + data.nama + "</td>" +
+              "<td>" + data.harga + "</td>" +
+              "<td>" + data.jumlah + "</td>" +
+              "<td>" + "link hapus" + "</td>" +
+              "</tr>"
+           )  
+           
+           nomorkeranjang++
+           
+           // selesai menampilkan barang di keranjang
+           
         })
         })
       </script>

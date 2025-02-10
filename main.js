@@ -70,6 +70,8 @@ namapelanggan
   } catch (error) {
     // menampilkan pesan gagal
     console.log(error)
+    
+    
   }
 }
 
