@@ -47,7 +47,7 @@ export async function ambilDaftarBarang() {
 }
 
 // menambah barang ke keranjang 
-export async function tambahBarangkekeranjang(
+export async function tambahBarangKeKeranjang(
   idbarang,
   nama,
   harga,
@@ -77,7 +77,7 @@ export async function tambahBarangkekeranjang(
     
      if(jumlahRecord == 0) {
        // kalau belum ada, tambahkan langsung ke collection 
-       const refDokumen = await addDo(collection(basisdata, "transaksi"), {
+       const refDokumen = await addDoc(collection(basisdata, "transaksi"), {
       idbarang: idbarang,
       nama: nama,
       harga: harga,
