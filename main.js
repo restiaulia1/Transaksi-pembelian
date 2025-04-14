@@ -143,3 +143,48 @@ export async function ambilDaftarBarangDiKeranjang() {
 
   return hasilkueri;
 }
+
+ export async function ambilBarangKeranjang() {
+   let refDokumen = collection(basisdata, "transaksi")
+   
+   // membuat query untuk mencari data yg masih proses
+   let queryBarangProses = query(refDokumen, where("idPelanggan", "==", "proses"))
+   
+   let snapshotBarang = await getDocs(queryBarangProses)
+   let hasilkuery = []
+   snapshotBarang.forEach((dokumen) => {
+     hasilkueri.push({
+       id: dokumen.id,
+      nama: dokumen.data().nama,
+      alamat: dokumen.data().alamat,
+      harga: dokumen.data().harga,
+      idpelangga: dokumen.data().idpelanggan,
+      namapelanggan: dokumen.data().namapelanggan,
+     })
+     
+     return hasilkueri
+ })
+ }
+ 
+ export async function ubahbarangprosesdikeranjang(idpelanggan, namapelanggan)
+    {
+      let refDokumen = collection(basisdata, "transaksi")
+   
+   // membuat query untuk mencari data yg masih proses
+   let queryBarangProses = query(refDokumen, where("idPelanggan", "==", "proses"))
+   
+   let snapshotBarang = await getDocs(queryBarangProses)
+   snapshotBarang.forEach((dokumen) => {
+     await updateDoc(
+       doc(basisdata,"transaksi", dokumen.id),
+       {idpelanggan: idpelanggan, namapelanggan: namapelanggan}
+       )
+   })
+ }
+
+export async function ambilpelanggan(id) {
+  const refDokumen = await doc(basisdata,"pelanggan",id)
+  const snapshotDokumen = await getDoc(refDokumen)
+  
+  return await snapshotDokumen.data()
+}

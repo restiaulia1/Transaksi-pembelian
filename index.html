@@ -22,22 +22,24 @@
         <th scope="col">#</th>
         <th scope="col">Item</th>
         <th scope="col">Harga</th>
-        <th scope="col">Masukkan Keranjang</th>
+        <th scope="col">jumlah</th>
+        <th scope="col">Hapus Dari keranjang</th>
+        <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
     </tbody>
   </table>
 
-  <h3 id="keranjang">keranjang belanja</h3>
+  <h3>Daftar pelanggan</h3>
   <table class="table table-striped-columns table-bordered border-primary" id="daftar-keranjang">
     <thead class="table-primary">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Item</th>
-        <th scope="col">Harga</th>
-        <th scope="col">Jumlah</th>
-        <th scope="col">Hapus Dari Keranjang</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Alamat</th>
+        <th scope="col">No HP</th>
+        <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
@@ -116,7 +118,7 @@
       })
       
       // menghapus item dari keranjang
-      $("daftar-keranjang > tbody").on('click', 'link-hapus', async function() {
+      $("#daftar-keranjang > tbody").on('click', 'link-hapus', async function() {
         await hapusBarangDariKeranjang($(this).attr('data'))
         
         // refresh halaman
