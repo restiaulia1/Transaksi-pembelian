@@ -15,11 +15,27 @@
 <body class="m-3">
   <h1 class="text-center">Toko Incer</h1> 
   
-  <h3>nota pembelian <span id="namapelanggan"></span></h3>
+  <h3>nota pembelian atas nama <span id="namapelanggan"></span></h3>
+  
+  <!-- tampilkan tabel daftar barang di collection transaksi -->
+    <table class="table table-striped-columns table-bordered border-success" id="daftar-keranjang">
+    <thead class="table-danger">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Item</th>
+        <th scope="col">Harga</th>
+        <th scope="col">Jumlah</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  
 
  <script type="module">
    // impor fungsi tang diperlukan 
-   import { ambilpepanggan } from './main js'
+   import { ambilpepanggan, daftarBarangNotaPelanggan } from './main js'
    
    $(document).ready(async function() {
      const queryString = window.lontion.search
@@ -30,6 +46,28 @@
      const pelanggan = await ambilpelanggan(id)
      $("#namapelanggan").html(pelanggan.nama)
      
+          //menampilkan data barang yang ada di keranjang
+         let elemenDaftarBarangDiKeranjang = $("#daftar-keranjang > tbody")
+         let daftarBarangDiKeranjang = await daftarBarangNotaPelanggan(id)
+         let nomorKeranjang = 1
+         let totalKeranjang = 0 
+        
+        elemenDaftarBarangDiKeranjang.empty()
+         
+         daftarBarangDiKeranjang.forEach((data) => {
+           elemenDaftarBarangDiKeranjang.append(
+             "<tr>" + 
+             "<td>" + nomorKeranjang + "</td>" +
+             "<td>" + data.nama + "</td>" +
+             "<td>" + data.harga + "</td>" +
+             "<td>" + data.jumlah + "</td>" +
+             "<td>" + (data.harga * data.jumlah) + "</td>" +
+             "</tr>"
+            )
+            
+            nomorKeranjang++
+         })
+         // selesai menampilkan barang di keranjang
      
    })
    

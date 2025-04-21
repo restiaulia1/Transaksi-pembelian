@@ -182,3 +182,25 @@ export async function ambilpelanggan(id) {
   
   return await snapshotDokumen.data()
 }
+
+export async function daftarBarangNotaPelanggan(idpelanggan)
+{
+   let refDokumen = collection(basisdata, "transaksi")
+   
+   // membuat query mencari data pelanggan tertentu 
+   let queryBarangProses = query(refDokumen, where("idPelanggan", "==", "proses"))
+   
+   let snapshotBarang = await getDocs(queryBarangProses)
+   let hasilkuery = []
+   snapshotBarang.forEach((dokumen) => {
+     hasilkueri.push({
+       id: dokumen.id,
+      nama: dokumen.data().nama,
+      alamat: dokumen.data().alamat,
+      harga: dokumen.data().harga,
+      idpelangga: dokumen.data().idpelanggan,
+      namapelanggan: dokumen.data().namapelanggan,
+     })
+     
+     return hasilkueri
+})
